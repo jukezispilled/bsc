@@ -267,7 +267,7 @@ function App() {
           <img src="b.gif" className='w-[85%] md:w-[75%] rounded-xl' />
           <motion.a
             href='https://pump.fun/board'
-            className='absolute left-10 md:left-1/4 bg-[#A5FFF2] text-3xl md:text-6xl text-[#FEBAFF] border-4 border-[#FEBAFF] p-4 md:p-6 font-custom rounded-lg'
+            className='absolute left-10 md:left-1/4 bg-[#A5FFF2] text-3xl md:text-6xl text-[#FEBAFF] border-4 border-[#FEBAFF] p-4 md:p-6 font-custom'
             // Animation properties for pulsing effect
             animate={{ scale: [1, 1.05, 1] }} // Scale up and back to original
             transition={{
