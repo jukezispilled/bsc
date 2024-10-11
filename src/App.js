@@ -229,7 +229,7 @@ function App() {
           </div>
         </div>
 
-        <div className='absolute left-1/2 bottom-4 -translate-x-1/2 -translate-y-1/2 text-[#FEBAFF] bg-[#A5FFF2] border-2 border-[#FEBAFF] p-2 font-custom text-[9px] md:text-base whitespace-nowrap'>CA: coming soon</div>
+        <div className='absolute left-1/2 bottom-4 -translate-x-1/2 -translate-y-1/2 text-[#FEBAFF] bg-[#A5FFF2] border-2 border-[#FEBAFF] p-2 font-custom text-[9px] md:text-base whitespace-nowrap'>CA: 4hU4hGBMb5cxPPQo53okbu8KmdEDLZLCcMSKVJX6pump</div>
 
         <img src="d.gif" className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[595px] opacity-90' alt="Centered GIF"/>
         <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-custom text-3xl md:text-6xl text-center text-[#FEBAFF]'>
@@ -266,7 +266,7 @@ function App() {
         <div className='relative w-full h-full flex justify-center items-center'>
           <img src="b.gif" className='w-[85%] md:w-[75%] rounded-xl' />
           <motion.a
-            href='https://pump.fun/board'
+            href='https://pump.fun/4hU4hGBMb5cxPPQo53okbu8KmdEDLZLCcMSKVJX6pump'
             className='absolute left-10 md:left-1/4 bg-[#A5FFF2] text-3xl md:text-6xl text-[#FEBAFF] border-4 border-[#FEBAFF] p-4 md:p-6 font-custom'
             // Animation properties for pulsing effect
             animate={{ scale: [1, 1.05, 1] }} // Scale up and back to original
