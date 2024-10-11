@@ -161,10 +161,10 @@ function App() {
       <div className="h-screen w-screen relative">
         {/* Existing content */}
         <div className='absolute top-4 left-4 flex items-center z-[50] space-x-2 text-3xl font-custom text-[#FEBAFF]'>
-            <a href="https://x.com/" className='transition ease-in-out duration-150 underline'>
+            <a href="https://x.com/MSI69420sol" className='transition ease-in-out duration-150 underline'>
               X
             </a>
-            <a href="https://t.me/" className='transition ease-in-out duration-150 underline'>
+            <a href="https://t.me/MSI69420Portal" className='transition ease-in-out duration-150 underline'>
               TG
             </a>
         </div>
