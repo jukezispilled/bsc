@@ -10,6 +10,7 @@ import TradingSimulator from './Trade';
 import Marque from './Marque';
 import { AnimatedList } from './Ani';
 import { Copy } from "lucide-react";
+import Modal from './modal';
 
 let notifications = [
   {
@@ -221,7 +222,23 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [loyalToCz, setLoyalToCz] = useState(null);
   const address = "XXXXXXXXXXXXXXX"
+
+  const handleConfirm = () => {
+    setLoyalToCz(true);
+    // Start playing music automatically
+    if (audioRef.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+  
+  const handleDecline = () => {
+    setLoyalToCz(false);
+    // Redirect to another site
+    window.location.href = "https://www.mcdonalds.com.cn/careers";
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(address);
@@ -276,6 +293,7 @@ function App() {
   return (
     <div className='bg-black'>
       <Marque />
+      <Modal onConfirm={handleConfirm} onDecline={handleDecline} />
       <div className='fixed top-5 left-5 right-5 z-30'>
         <AnimatedList>
           {notifications.map((item, idx) => (
@@ -358,7 +376,8 @@ function App() {
           <Copy className="w-4 h-4 md:w-5 md:h-5" />
           <span>{copied ? "Copied!" : formatAddress(address)}</span>
         </div>
-        <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-custom text-3xl md:text-6xl text-center text-yellow-400'>
+        <img src="coin.gif" className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] md:w-[400px] opacity-90' alt="Centered GIF"/>
+        <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-custom text-3xl md:text-6xl text-center text-yellow-400' style={{ WebkitTextStroke: '1px black', textStroke: '1px black' }}>
           <SparklesText text={'Binance'}/> 
           <span className='block whitespace-nowrap'><SparklesText text={'SuperCycle Index'}/></span> 
           <SparklesText text={'6900'}/>
