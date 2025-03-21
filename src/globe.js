@@ -12,13 +12,13 @@ const GLOBE_CONFIG = {
     devicePixelRatio: 2,
     phi: 0,
     theta: 0.3,
-    dark: 0,
+    dark: 1, // Increased darkness for blackish effect
     diffuse: 0.4,
     mapSamples: 16000,
     mapBrightness: 1.2,
-    baseColor: [0.647, 1.0, 0.949],
-    markerColor: [0.996, 0.729, 1.0],  // Gold color
-    glowColor: [0.647, 1.0, 0.949],
+    baseColor: [0.7, 0.7, 0.7], // Light gray base color  
+    markerColor: [1.0, 0.843, 0.0], // Gold color  
+    glowColor: [0.6, 0.6, 0.6], // Soft gray glow      
     markers: [
       { location: [14.5995, 120.9842], size: 0.03 },
       { location: [19.076, 72.8777], size: 0.1 },
@@ -31,7 +31,7 @@ const GLOBE_CONFIG = {
       { location: [34.6937, 135.5022], size: 0.05 },
       { location: [41.0082, 28.9784], size: 0.06 },
     ],
-};  
+};
 
 export default function Globe({ className, config = GLOBE_CONFIG }) {
   let phi = 0;

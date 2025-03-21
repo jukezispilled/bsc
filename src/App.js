@@ -6,6 +6,114 @@ import Marquee from "react-fast-marquee";
 import { motion } from 'framer-motion';
 import { cn } from './lib/utils';
 import './App.css';
+import TradingSimulator from './Trade';
+import Marque from './Marque';
+import { AnimatedList } from './Ani';
+import { Copy } from "lucide-react";
+
+let notifications = [
+  {
+    name: "CZ",
+    description: "BSC69000 super. takeover imminent",
+    time: "3m ago",
+    icon: "cpfp.jpg",
+    color: "#FFFFFF",
+  },
+  {
+    name: "Jinping",
+    description: "glory to the CCP",
+    time: "now",
+    icon: "jpfp.png",
+    color: "#FFFFFF",
+  },
+];
+
+notifications = Array.from({ length: 1 }, () => notifications).flat();
+
+const Notification = ({ name, description, icon, color, time }) => {
+  return (
+    <figure
+      className={cn(
+        "relative mx-auto min-h-fit w-full max-w-[400px] transform cursor-pointer overflow-hidden rounded-2xl p-4",
+        // animation styles
+        "transition-all duration-200 ease-in-out hover:scale-[103%]",
+        // light styles
+        "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+        // dark styles
+        "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+      )}
+    >
+      <div className="flex flex-row items-center gap-3">
+        <div
+          className="flex size-12 items-center justify-center rounded-2xl overflow-hidden"
+          style={{
+            backgroundColor: color,
+          }}
+        >
+          <img src={icon} alt="Icon" className="w-full h-full object-cover" />
+        </div>
+        <div className="flex flex-col overflow-hidden">
+          <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white ">
+            <span className="text-sm sm:text-lg">{name}</span>
+            <span className="mx-1">·</span>
+            <span className="text-xs text-gray-500">{time}</span>
+          </figcaption>
+          <p className="text-sm font-normal dark:text-white/60">
+            {description}
+          </p>
+        </div>
+      </div>
+    </figure>
+  );
+};
+
+const FloatingImageWithChat = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const fullMessage = "";
+
+  useEffect(() => {
+    const showTimeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 500);
+
+    const hideTimeout = setTimeout(() => {
+      setIsVisible(false);
+    }, 10000);
+
+    return () => {
+      clearTimeout(showTimeout);
+      clearTimeout(hideTimeout);
+    };
+  }, []);
+
+  return (
+    <div
+      className={`z-20 w-[80%] sm:w-[40%] floating-container hidden md:block ${isVisible ? 'visible' : ''}`}
+      style={{
+        position: 'fixed',
+      }}
+    >
+      <img
+        src="c.png"
+        alt="Floating Cz"
+        className='w-[50%]'
+      />
+      <div
+        className='absolute -top-[10%] -left-[10%]'
+        style={{
+          backgroundColor: 'transparent',
+          padding: '10px',
+          maxWidth: '200px',
+          textAlign: 'center',
+        }}
+      >
+        <div>
+          <p className='p-1'>{fullMessage}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const reviews = [
   {
@@ -17,7 +125,7 @@ const reviews = [
   {
     name: "Bill Ackman",
     username: "@BillAckman",
-    body: "fund is doubling down on MSI69420. data points up",
+    body: "fund is doubling down on BSC69000. data points up",
     img: "bill.png",
   },
   {
@@ -41,7 +149,7 @@ const reviews = [
   {
     name: "Elon Musk",
     username: "@elonmusk",
-    body: "MSI69420 might reach mars before me. trump in?",
+    body: "BSC69000 might reach mars before me. trump in?",
     img: "elon.png",
   },
 ];
@@ -68,7 +176,7 @@ const reviewss = [
   {
     name: "Donald Trump",
     username: "@realDonaldTrump",
-    body: "only for winners this thing. real winners. endorsing this",
+    body: "only for winners. real winners. endorsing $BNB",
     img: "don.png",
   },
   {
@@ -84,8 +192,6 @@ const reviewss = [
     img: "kramer.png",
   },
 ];
-
-const CA = 'coming soon';
  
 const ReviewCard = ({ img, name, username, body }) => {
   return (
@@ -114,6 +220,17 @@ function App() {
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const address = "XXXXXXXXXXXXXXX"
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(address);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500); // Reset "Copied!" message after 1.5 sec
+  };
+
+  // Format address: Show first 4 and last 4 chars (e.g., 0x12...aB)
+  const formatAddress = (addr) => addr.slice(0, 4) + "..." + addr.slice(-4);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -157,25 +274,30 @@ function App() {
   };
 
   return (
-    <div className='bg-[#ffefff]'>
+    <div className='bg-black'>
+      <Marque />
+      <div className='fixed top-5 left-5 right-5 z-30'>
+        <AnimatedList>
+          {notifications.map((item, idx) => (
+            <Notification {...item} key={idx} />
+          ))}
+        </AnimatedList>
+      </div>
       <div className="h-screen w-screen relative">
         {/* Existing content */}
-        <div className='absolute top-4 left-4 flex items-center z-[50] space-x-2 text-3xl font-custom text-[#FEBAFF]'>
-            <a href="https://x.com/MSI69420sol" className='transition ease-in-out duration-150 underline'>
+        <div className='absolute top-12 left-4 flex items-center z-10 space-x-2 text-3xl font-custom text-yellow-400'>
+            <a href="https://x.com/" className='transition ease-in-out duration-150 underline'>
               X
-            </a>
-            <a href="https://t.me/MSI69420Portal" className='transition ease-in-out duration-150 underline'>
-              TG
             </a>
         </div>
 
         {/* Enhanced Audio Player */}
-        <div className='absolute top-4 right-4 z-[50] bg-[#A5FFF2] p-4 border-2 border-[#FEBAFF]'>
-          <audio ref={audioRef} src="/creed.mp3" />
+        <div className='absolute top-12 right-4 z-10 bg-black p-4 border-2 border-yellow-400'>
+          <audio ref={audioRef} src="/china.mp3" loop/>
           <div className="flex items-center space-x-2 mb-2">
             <button 
               onClick={togglePlay}
-              className='bg-[#FEBAFF] text-[#A5FFF2] px-4 py-2 rounded-full font-custom text-sm'
+              className='bg-black text-yellow-400 border border-yellow-400 px-4 py-2 rounded-full font-custom text-sm'
             >
               {isPlaying ? 'Pause' : 'Play'}
             </button>
@@ -190,7 +312,7 @@ function App() {
             />
           </div>
           <div className="flex items-center space-x-2">
-            <span className="text-xs font-custom text-[#FEBAFF]">{formatTime(currentTime)}</span>
+            <span className="text-xs font-custom text-yellow-400">{formatTime(currentTime)}</span>
             <input
               type="range"
               min="0"
@@ -199,7 +321,7 @@ function App() {
               onChange={handleSeek}
               className="flex-grow range-slider"
             />
-            <span className="text-xs font-custom text-[#FEBAFF]">{formatTime(duration)}</span>
+            <span className="text-xs font-custom text-yellow-400">{formatTime(duration)}</span>
           </div>
         </div>
 
@@ -229,20 +351,27 @@ function App() {
           </div>
         </div>
 
-        <div className='absolute left-1/2 bottom-4 -translate-x-1/2 -translate-y-1/2 text-[#FEBAFF] bg-[#A5FFF2] border-2 border-[#FEBAFF] p-2 font-custom text-[9px] md:text-base whitespace-nowrap'>CA: 4hU4hGBMb5cxPPQo53okbu8KmdEDLZLCcMSKVJX6pump</div>
-
-        <img src="d.gif" className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[595px] opacity-90' alt="Centered GIF"/>
-        <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-custom text-3xl md:text-6xl text-center text-[#FEBAFF]'>
-          <SparklesText text={'Memecoin'}/> 
-          <span className='block whitespace-nowrap'><SparklesText text={'SuperCycle Index'}/></span> 
-          <SparklesText text={'69420'}/>
+        <div
+          className="absolute left-1/2 bottom-4 -translate-x-1/2 -translate-y-1/2 text-yellow-400 bg-black border-2 border-yellow-400 p-2 font-custom text-[9px] md:text-base whitespace-nowrap flex items-center space-x-2 cursor-pointer md:hover:scale-[103%] transition duration-150 ease-in-out"
+          onClick={handleCopy}
+        >
+          <Copy className="w-4 h-4 md:w-5 md:h-5" />
+          <span>{copied ? "Copied!" : formatAddress(address)}</span>
         </div>
+        <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-custom text-3xl md:text-6xl text-center text-yellow-400'>
+          <SparklesText text={'Binance'}/> 
+          <span className='block whitespace-nowrap'><SparklesText text={'SuperCycle Index'}/></span> 
+          <SparklesText text={'6900'}/>
+        </div>
+      </div>
+      <div className='w-full flex justify-center pt-4 md:pt-10'>
+        <TradingSimulator initialPrice={600}/>
       </div>
       <div className="relative flex h-min py-[25%] md:py-[10%] w-full flex-col items-center justify-center overflow-hidden">
         <div className="w-full lg:w-[75%] 2xl:w-[50%] relative">
           {/* Gradient fade effect at the start and end */}
-          <div className="absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-[#ffefff] dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
-          <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-[#ffefff] dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-black dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-black dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
 
           {/* Marquees */}
           <Marquee pauseOnHover={true} speed={80}>
@@ -262,12 +391,12 @@ function App() {
           </Marquee>
         </div>
       </div>
-      <div className='h-min py-[25%] md:py-[10%] w-full flex justify-center items-center'>
+      <div className='h-min pb-[25%] md:pb-[10%] w-full flex justify-center items-center'>
         <div className='relative w-full h-full flex justify-center items-center'>
-          <img src="b.gif" className='w-[85%] md:w-[75%] rounded-xl' />
+          <img src="n.gif" className='w-[85%] md:w-[75%] rounded-xl' />
           <motion.a
-            href='https://pump.fun/4hU4hGBMb5cxPPQo53okbu8KmdEDLZLCcMSKVJX6pump'
-            className='absolute left-10 md:left-1/4 bg-[#A5FFF2] text-3xl md:text-6xl text-[#FEBAFF] border-4 border-[#FEBAFF] p-4 md:p-6 font-custom'
+            href='https://four.meme'
+            className='absolute left-10 md:left-1/4 bg-black text-3xl md:text-6xl text-yellow-400 border-4 border-yellow-400 p-4 md:p-6 font-custom'
             // Animation properties for pulsing effect
             animate={{ scale: [1, 1.05, 1] }} // Scale up and back to original
             transition={{
@@ -280,6 +409,7 @@ function App() {
           </motion.a>
         </div>
       </div>
+      <FloatingImageWithChat />
     </div>
   );
 }
