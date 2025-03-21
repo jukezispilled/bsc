@@ -379,7 +379,8 @@ function App() {
         <img src="coin.gif" className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] md:w-[400px] opacity-90' alt="Centered GIF"/>
         <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-custom text-3xl md:text-6xl text-center text-yellow-400' style={{ WebkitTextStroke: '1px black', textStroke: '1px black' }}>
           <SparklesText text={'Binance'}/> 
-          <span className='block whitespace-nowrap'><SparklesText text={'SuperCycle Index'}/></span> 
+          <span className='block whitespace-nowrap'><SparklesText text={'SuperCycle Index'}/></span>
+          <span className='block whitespace-nowrap'><SparklesText text={'币安超级周期指数'}/></span> 
           <SparklesText text={'6900'}/>
         </div>
       </div>
