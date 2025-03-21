@@ -368,7 +368,7 @@ function App() {
         <TradingSimulator initialPrice={600}/>
       </div>
       <div className="relative flex h-min py-[25%] md:py-[10%] w-full flex-col items-center justify-center overflow-hidden">
-        <div className="w-full lg:w-[75%] 2xl:w-[50%] relative">
+        <div className="w-full lg:w-[75%] 2xl:w-[65%] relative">
           {/* Gradient fade effect at the start and end */}
           <div className="absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-black dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
           <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-black dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
