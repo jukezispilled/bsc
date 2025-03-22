@@ -415,7 +415,7 @@ function App() {
         <div className='relative w-full h-full flex justify-center items-center'>
           <img src="n.gif" className='w-[85%] md:w-[75%] rounded-xl' />
           <motion.a
-            href='https://four.meme'
+            href={`https://four.meme/token/${address}`}
             className='absolute left-10 md:left-1/4 bg-black text-3xl md:text-6xl text-yellow-400 border-4 border-yellow-400 p-4 md:p-6 font-custom'
             // Animation properties for pulsing effect
             animate={{ scale: [1, 1.05, 1] }} // Scale up and back to original
