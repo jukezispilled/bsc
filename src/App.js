@@ -223,7 +223,7 @@ function App() {
   const [duration, setDuration] = useState(0);
   const [copied, setCopied] = useState(false);
   const [loyalToCz, setLoyalToCz] = useState(null);
-  const address = "XXXXXXXXXXXXXXX"
+  const address = "0x22cae78e541ac600b3285bf34b57273440054a0f"
 
   const handleConfirm = () => {
     setLoyalToCz(true);
