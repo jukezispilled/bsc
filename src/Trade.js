@@ -66,10 +66,12 @@ const TradingSimulator = ({ title, imageSrc, initialPrice }) => {
     useEffect(() => {
       const interval = setInterval(() => {
         setPrice(prevPrice => {
-          const change = (Math.random() - 0.5) * 2;
-          const newPrice = Math.max(0, prevPrice + change);
+          const percentageChange = (Math.random() - 0.5) * 0.02;  // Random percentage change between -2% and 2%
+          const newPrice = Math.max(0, prevPrice * (1 + percentageChange)); // Apply percentage change
+
           const lastEntry = priceHistory[priceHistory.length - 1];
           const newTime = lastEntry.time + 60;
+
           const newEntry = {
             time: newTime,
             open: lastEntry.close,
@@ -77,6 +79,7 @@ const TradingSimulator = ({ title, imageSrc, initialPrice }) => {
             low: Math.min(lastEntry.close, newPrice),
             close: newPrice,
           };
+
           setPriceHistory(prev => {
             const updatedHistory = [
               ...prev.filter(entry => entry.time < newTime),
@@ -84,50 +87,51 @@ const TradingSimulator = ({ title, imageSrc, initialPrice }) => {
             ].sort((a, b) => a.time - b.time);
             return updatedHistory;
           });
+
           return newPrice;
         });
       }, 100);
-  
+
       return () => clearInterval(interval);
     }, [priceHistory]);
   
     const handleBuy = () => {
-        setPrice((prev) => {
-            const newPrice = prev * 10;
-            const lastEntry = priceHistory[priceHistory.length - 1];
-            const newTime = lastEntry.time + 60 + Math.random() * 0.001;
-            const updatedEntry = {
-                time: newTime,
-                open: lastEntry.open,
-                high: Math.max(lastEntry.high, newPrice),
-                low: Math.min(lastEntry.low, newPrice),
-                close: newPrice,
-            };
-            setPriceHistory((prevHistory) => [
-                ...prevHistory.slice(0, prevHistory.length - 1),
-                updatedEntry,
-            ]);
-            return newPrice;
-        });
+      setPrice((prev) => {
+        const newPrice = prev * 10;
+        const lastEntry = priceHistory[priceHistory.length - 1];
+        const newTime = lastEntry.time + 60 + Math.random() * 0.001;
+        const updatedEntry = {
+          time: newTime,
+          open: lastEntry.open,
+          high: Math.max(lastEntry.high, newPrice),
+          low: Math.min(lastEntry.low, newPrice),
+          close: newPrice,
+        };
+        setPriceHistory((prevHistory) => [
+          ...prevHistory.slice(0, prevHistory.length - 1),
+          updatedEntry,
+        ]);
+        return newPrice;
+      });
     };    
 
     const handleSell = () => {
       setPrice((prev) => {
-          const newPrice = prev * .1;
-          const lastEntry = priceHistory[priceHistory.length - 1];
-          const newTime = lastEntry.time + 60 + Math.random() * 0.001;
-          const updatedEntry = {
-              time: newTime,
-              open: lastEntry.open,
-              high: Math.max(lastEntry.high, newPrice),
-              low: Math.min(lastEntry.low, newPrice),
-              close: newPrice,
-          };
-          setPriceHistory((prevHistory) => [
-              ...prevHistory.slice(0, prevHistory.length - 1),
-              updatedEntry,
-          ]);
-          return newPrice;
+        const newPrice = prev * 0.1;
+        const lastEntry = priceHistory[priceHistory.length - 1];
+        const newTime = lastEntry.time + 60 + Math.random() * 0.001;
+        const updatedEntry = {
+          time: newTime,
+          open: lastEntry.open,
+          high: Math.max(lastEntry.high, newPrice),
+          low: Math.min(lastEntry.low, newPrice),
+          close: newPrice,
+        };
+        setPriceHistory((prevHistory) => [
+          ...prevHistory.slice(0, prevHistory.length - 1),
+          updatedEntry,
+        ]);
+        return newPrice;
       });
     }; 
   
