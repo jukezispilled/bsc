@@ -58,7 +58,7 @@ const Modal = ({ onConfirm, onDecline }) => {
         </h2>
         
         <p className="text-white mb-8 font-custom">
-          BSC69000 is only for true believers in the Binance SuperCycle.
+          BSC6900 is only for true believers in the Binance SuperCycle.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
