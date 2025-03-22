@@ -304,7 +304,7 @@ function App() {
       <div className="h-screen w-screen relative">
         {/* Existing content */}
         <div className='absolute top-12 left-4 flex items-center z-10 space-x-2 text-3xl font-custom text-yellow-400'>
-            <a href="https://x.com/" className='transition ease-in-out duration-150 underline'>
+            <a href="https://x.com/bsc6900" className='transition ease-in-out duration-150 underline'>
               X
             </a>
         </div>
